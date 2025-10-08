@@ -525,12 +525,12 @@ gboolean gst_pylon_capture(GstPylon *self, GstBuffer **buf,
         } else {
           /* Retry to capture next buffer and release current pylon buffer */
           GST_ELEMENT_WARNING(self->gstpylonsrc, LIBRARY, FAILED,
-                              ("Capture failed. Skipping buffer."),
+                              ("Capture failed. Skipping buffer; not incrementing retry counter."),
                               ("%s", error_message.c_str()));
           delete grab_result_ptr;
           grab_result_ptr = NULL;
           retry_grab = true;
-          retry_frame_counter += 1;
+          // retry_frame_counter += 1;
         }
         break;
     };
